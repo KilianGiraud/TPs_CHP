@@ -1,0 +1,18 @@
+#!/bin/bash
+# Sim10times - launch 10 independent replications of simPI in parallel
+# (SPMD: same program, 10 different seeds = 10 random streams)
+# Each process runs in background (&); Linux spreads them on the cores.
+
+./simPI 19937 > PI1  &
+./simPI 52149 > PI2  &
+./simPI 31415 > PI3  &
+./simPI 27182 > PI4  &
+./simPI 14142 > PI5  &
+./simPI 17320 > PI6  &
+./simPI 44257 > PI7  &
+./simPI 70913 > PI8  &
+./simPI 63113 > PI9  &
+./simPI 86226 > PI10 &
+
+wait    # wait for the 10 background processes to finish
+echo "All 10 replications done."
