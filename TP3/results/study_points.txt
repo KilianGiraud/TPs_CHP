@@ -1,0 +1,18 @@
+=== MT19937 | sphere 3D (R = 1) | 10 replicates x 1000 points | 12 threads ===
+    95% CI radius R     = 7.590e-02
+    95% CI              = [3.0614978493 ; 3.2133021507]  contains M_PI: yes
+=== MT19937 | sphere 3D (R = 1) | 10 replicates x 10000 points | 12 threads ===
+    95% CI radius R     = 2.239e-02
+    95% CI              = [3.1130336956 ; 3.1578063044]  contains M_PI: yes
+=== MT19937 | sphere 3D (R = 1) | 10 replicates x 100000 points | 12 threads ===
+    95% CI radius R     = 6.947e-03
+    95% CI              = [3.1329965676 ; 3.1468914324]  contains M_PI: yes
+=== MT19937 | sphere 3D (R = 1) | 10 replicates x 1000000 points | 12 threads ===
+    95% CI radius R     = 2.498e-03
+    95% CI              = [3.1397010252 ; 3.1446965748]  contains M_PI: yes
+=== MT19937 | sphere 3D (R = 1) | 10 replicates x 10000000 points | 12 threads ===
+    95% CI radius R     = 6.605e-04
+    95% CI              = [3.1407424139 ; 3.1420633861]  contains M_PI: yes
+=== MT19937 | sphere 3D (R = 1) | 10 replicates x 100000000 points | 12 threads ===
+    95% CI radius R     = 1.569e-04
+    95% CI              = [3.1412230140 ; 3.1415368140]  contains M_PI: NO

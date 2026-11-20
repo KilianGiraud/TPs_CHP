@@ -1,0 +1,29 @@
+=== MT19937 | sphere 3D (R = 1) | 10 replicates x 1000000000 points | 12 threads ===
+  replicate  1 : V = 4.1887997760 | pi = 3.1415998320
+  replicate  2 : V = 4.1888907680 | pi = 3.1416680760
+  replicate  3 : V = 4.1887018640 | pi = 3.1415263980
+  replicate  4 : V = 4.1889450720 | pi = 3.1417088040
+  replicate  5 : V = 4.1887947760 | pi = 3.1415960820
+  replicate  6 : V = 4.1888031840 | pi = 3.1416023880
+  replicate  7 : V = 4.1888841840 | pi = 3.1416631380
+  replicate  8 : V = 4.1888024480 | pi = 3.1416018360
+  replicate  9 : V = 4.1889680480 | pi = 3.1417260360
+  replicate 10 : V = 4.1888501840 | pi = 3.1416376380
+
+  Volume (exact 4/3 pi R^3 = 4.1887902048)
+    mean V              = 4.1888440304
+    95% CI on V         = [4.1887868965 ; 4.1889011643]  R = 5.713e-05
+
+  PI
+    mean pi             = 3.1416330228
+    S^2(n)              = 3.589e-09
+    S(n)                = 5.990e-05  (theory for 1 replicate: 9.476e-05)
+    std error S/sqrt(n) = 1.894e-05
+    t(9 ; 0.975)        = 2.262
+    95% CI radius R     = 4.285e-05
+    95% CI              = [3.1415901724 ; 3.1416758732]  contains M_PI: yes
+    t(9 ; 0.995)        = 3.250
+    99% CI              = [3.1415714561 ; 3.1416945895]  contains M_PI: yes
+    absolute error      = 4.037e-05
+    relative error      = 1.285e-05
+  time (wall)           = 15.13 s

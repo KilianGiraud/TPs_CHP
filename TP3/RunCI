@@ -1,0 +1,31 @@
+#!/bin/bash
+# RunCI - Q2: confidence intervals on PI computed from the volume of the
+# sphere (3D), for 10 then 40 replicates of 10^9 points, with the two
+# generators of Q1. Inside each run the replicates are computed in
+# parallel with OpenMP (one thread per logical core by default, change
+# it with OMP_NUM_THREADS); the runs themselves are sequential since
+# each one already uses all the cores.
+# Build sphereCI first (see TP3.md, "Build"). Outputs saved in results/.
+
+mkdir -p results
+
+# --- Required runs: 10 and 40 replicates, 10^9 points each ---------
+./sphereCI mt  10 | tee results/ci_mt_10.txt
+echo
+./sphereCI mt  40 | tee results/ci_mt_40.txt
+echo
+./sphereCI mrg 10 | tee results/ci_mrg_10.txt
+echo
+./sphereCI mrg 40 | tee results/ci_mrg_40.txt
+echo
+
+# --- Effect of the number of replicates (10^6 points each) ----------
+for n in 5 10 20 30 40 50; do
+    ./sphereCI mt $n 1e6 | grep -E "^===|95% CI +(radius|=)"
+done | tee results/study_replicates.txt
+echo
+
+# --- Effect of the number of points per replicate (10 replicates) ---
+for N in 1e3 1e4 1e5 1e6 1e7 1e8; do
+    ./sphereCI mt 10 $N | grep -E "^===|95% CI +(radius|=)"
+done | tee results/study_points.txt
