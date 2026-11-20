@@ -26,7 +26,6 @@
     else return ((p1 - p2) * norm);
     }
 
-######################
 
  double  s10, s11, s12, s13, s14, s20, s21, s22, s23, s24;
 
@@ -61,7 +60,6 @@ double MRG32k5a ()
     else  return ((p1 - p2) * norm);
     }
 
-######################
 
  #define norm  1.0842021724855052e-19
  #define m1    9223372036854769163
