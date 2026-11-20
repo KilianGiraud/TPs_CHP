@@ -1,0 +1,14 @@
+#!/bin/bash
+# RunBench - Q1C: time 10^9 calls of each generator, compiled without
+# optimization (-O0) then with optimization (-O2, -O3 -march=native).
+# Build the 3 binaries first (see TP3.md, "Build").
+# The runs are SEQUENTIAL on purpose: a benchmark must not share the
+# CPU with another one. Each output is displayed and saved in results/.
+
+mkdir -p results
+
+./benchRNG_O0 | tee results/bench_O0.txt
+echo
+./benchRNG_O2 | tee results/bench_O2.txt
+echo
+./benchRNG_O3 | tee results/bench_O3.txt

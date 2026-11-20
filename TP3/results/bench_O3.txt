@@ -1,0 +1,10 @@
+=== ./benchRNG_O3 : reference checks ===
+  MT19937  init_by_array, 5 first outputs = mt19937ar.out : OK
+  MT19937  init_genrand(5489), 10000th output = 4123659995  : OK
+  MRG32k3a seed {12345 x 6}, first output = 0.1270111220     : OK
+  MRG32k3a jump 2^127, seed of stream 1 = RngStreams      : OK
+
+=== ./benchRNG_O3 : 1000000000 calls per generator ===
+  rand() (TP2)         :   7.40 s |   7.40 ns/call |   135.1 M calls/s | mean = 0.499977
+  MT19937 real1        :   2.05 s |   2.05 ns/call |   487.0 M calls/s | mean = 0.500009
+  MRG32k3a             :  27.14 s |  27.14 ns/call |    36.9 M calls/s | mean = 0.500005

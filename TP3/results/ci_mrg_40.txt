@@ -1,0 +1,59 @@
+=== MRG32k3a | sphere 3D (R = 1) | 40 replicates x 1000000000 points | 12 threads ===
+  replicate  1 : V = 4.1887982880 | pi = 3.1415987160
+  replicate  2 : V = 4.1889221280 | pi = 3.1416915960
+  replicate  3 : V = 4.1887522720 | pi = 3.1415642040
+  replicate  4 : V = 4.1886114480 | pi = 3.1414585860
+  replicate  5 : V = 4.1889623600 | pi = 3.1417217700
+  replicate  6 : V = 4.1886176240 | pi = 3.1414632180
+  replicate  7 : V = 4.1888171600 | pi = 3.1416128700
+  replicate  8 : V = 4.1888014640 | pi = 3.1416010980
+  replicate  9 : V = 4.1887130640 | pi = 3.1415347980
+  replicate 10 : V = 4.1886541840 | pi = 3.1414906380
+  replicate 11 : V = 4.1889525840 | pi = 3.1417144380
+  replicate 12 : V = 4.1888463680 | pi = 3.1416347760
+  replicate 13 : V = 4.1888993120 | pi = 3.1416744840
+  replicate 14 : V = 4.1888562880 | pi = 3.1416422160
+  replicate 15 : V = 4.1888472800 | pi = 3.1416354600
+  replicate 16 : V = 4.1886552160 | pi = 3.1414914120
+  replicate 17 : V = 4.1888108480 | pi = 3.1416081360
+  replicate 18 : V = 4.1887174080 | pi = 3.1415380560
+  replicate 19 : V = 4.1891162560 | pi = 3.1418371920
+  replicate 20 : V = 4.1890650880 | pi = 3.1417988160
+  replicate 21 : V = 4.1884901040 | pi = 3.1413675780
+  replicate 22 : V = 4.1888354560 | pi = 3.1416265920
+  replicate 23 : V = 4.1888501280 | pi = 3.1416375960
+  replicate 24 : V = 4.1888206160 | pi = 3.1416154620
+  replicate 25 : V = 4.1886801600 | pi = 3.1415101200
+  replicate 26 : V = 4.1889703200 | pi = 3.1417277400
+  replicate 27 : V = 4.1885868800 | pi = 3.1414401600
+  replicate 28 : V = 4.1886573520 | pi = 3.1414930140
+  replicate 29 : V = 4.1885355440 | pi = 3.1414016580
+  replicate 30 : V = 4.1889799600 | pi = 3.1417349700
+  replicate 31 : V = 4.1887992960 | pi = 3.1415994720
+  replicate 32 : V = 4.1888012880 | pi = 3.1416009660
+  replicate 33 : V = 4.1888578560 | pi = 3.1416433920
+  replicate 34 : V = 4.1888219440 | pi = 3.1416164580
+  replicate 35 : V = 4.1886530880 | pi = 3.1414898160
+  replicate 36 : V = 4.1888711440 | pi = 3.1416533580
+  replicate 37 : V = 4.1888513760 | pi = 3.1416385320
+  replicate 38 : V = 4.1889243520 | pi = 3.1416932640
+  replicate 39 : V = 4.1885785600 | pi = 3.1414339200
+  replicate 40 : V = 4.1888223440 | pi = 3.1416167580
+
+  Volume (exact 4/3 pi R^3 = 4.1887902048)
+    mean V              = 4.1887951102
+    95% CI on V         = [4.1887496165 ; 4.1888406039]  R = 4.549e-05
+
+  PI
+    mean pi             = 3.1415963326
+    S^2(n)              = 1.138e-08
+    S(n)                = 1.067e-04  (theory for 1 replicate: 9.476e-05)
+    std error S/sqrt(n) = 1.687e-05
+    t(39 ; 0.975)       = 2.023
+    95% CI radius R     = 3.412e-05
+    95% CI              = [3.1415622124 ; 3.1416304529]  contains M_PI: yes
+    t(39 ; 0.995)       = 2.708
+    99% CI              = [3.1415506581 ; 3.1416420072]  contains M_PI: yes
+    absolute error      = 3.679e-06
+    relative error      = 1.171e-06
+  time (wall)           = 329.93 s
