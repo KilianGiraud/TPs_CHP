@@ -1,0 +1,17 @@
+# Binaries and object files: rebuild them with make (see TP4.md, "Build")
+compare
+equality
+sumMul
+derivative
+ranges
+logFactorial
+notNumbers
+notNumbers_fast
+associativity
+associativity_fma
+softmax
+sumBench
+sumBench_fast
+reproSum
+*.o
+a.out

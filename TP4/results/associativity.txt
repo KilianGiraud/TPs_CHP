@@ -1,0 +1,22 @@
+=== 1. Examples of the subject ===
+(pow(10,-3) + 1) - 1 = 0.000999999999999890
+pow(10,-3) + (1 - 1) = 0.001000000000000000
+(2^60 - 2^60) + 1    = 1.0
+(2^60 + 1) - 2^60    = 0.0
+
+=== 2. Other non-associative operations ===
+0.1 + 0.2            = 0.30000000000000004  (== 0.3 : false)
+(0.1 + 0.2) + 0.3    = 0.60000000000000009
+0.1 + (0.2 + 0.3)    = 0.59999999999999998
+(0.1 * 0.2) * 0.3    = 0.006000000000000001
+0.1 * (0.2 * 0.3)    = 0.0060000000000000001
+(1e308 * 10) * 0.1   = inf   (overflow of the intermediate)
+1e308 * (10 * 0.1)   = 1e+308
+p = 0.1 * 10; p - 1  = 0   (2 roundings, unless fused)
+fma(0.1, 10, -1)     = 5.5511151231257827e-17   (1 rounding: exact error of 0.1 * 10)
+
+=== 3. Harmonic sum: order of the additions ===
+n = 10000000 terms, exact H(n) = 16.695311365859855
+float  forward  (1 -> n) = 15.4036827   rel. error 7.7e-02   (stops growing at i = 2097152)
+float  backward (n -> 1) = 16.6860313   rel. error 5.6e-04
+double forward  (1 -> n) = 16.695311365857272   rel. error 1.5e-13

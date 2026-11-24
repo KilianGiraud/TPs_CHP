@@ -1,0 +1,53 @@
+=== 1. First code of the subject ===
+only 1 is right
+
+=== 2. Second code of the subject ===
+a  %0.10f : 0.6999999881
+c  %0.15f : 0.699999988079071
+d  %0.15f : 0.700000000000000
+c  %0.18f : 0.699999988079071045
+d  %0.18f : 0.699999999999999956
+1 is right
+
+=== 3. Expected behaviour (float constants or doubles) ===
+float a, b compared with .7  and .5  (doubles) : only 1 is right
+float a, b compared with .7f and .5f (floats)  : 0 conditions are right
+double a, b compared with .7 and .5  (doubles) : 0 conditions are right
+
+=== 4. What is really stored in memory ===
+val  type    hexadecimal          s  exponent     mantissa
+0.1  float   0x3DCCCCCD           0  01111011     10011001100110011001101
+0.1  double  0x3FB999999999999A   0  01111111011  1001100110011001100110011001100110011001100110011010
+0.5  float   0x3F000000           0  01111110     00000000000000000000000
+0.5  double  0x3FE0000000000000   0  01111111110  0000000000000000000000000000000000000000000000000000
+0.6  float   0x3F19999A           0  01111110     00110011001100110011010
+0.6  double  0x3FE3333333333333   0  01111111110  0011001100110011001100110011001100110011001100110011
+0.7  float   0x3F333333           0  01111110     01100110011001100110011
+0.7  double  0x3FE6666666666666   0  01111111110  0110011001100110011001100110011001100110011001100110
+
+Exact decimal value of the stored numbers:
+  0.1f = 0.100000001490116119384765625
+  0.1  = 0.1000000000000000055511151231257827021181583404541015625
+  => (double) 0.1f >  0.1  so  a < 0.1 is false
+
+  0.5f = 0.5
+  0.5  = 0.5
+  => (double) 0.5f == 0.5  so  a < 0.5 is false
+
+  0.6f = 0.60000002384185791015625
+  0.6  = 0.59999999999999997779553950749686919152736663818359375
+  => (double) 0.6f >  0.6  so  a < 0.6 is false
+
+  0.7f = 0.699999988079071044921875
+  0.7  = 0.6999999999999999555910790149937383830547332763671875
+  => (double) 0.7f <  0.7  so  a < 0.7 is TRUE
+
+=== 5. How many digits to print? ===
+double 0.7  %.15f : 0.700000000000000
+            %.18f : 0.699999999999999956
+            %.17g : 0.69999999999999996   (17 digits: unique double)
+            %a    : 0x1.6666666666666p-1   (exact, hexadecimal)
+            exact : 0.6999999999999999555910790149937383830547332763671875  (52 decimals)
+float  0.7f %.9g  : 0.699999988   (9 digits: unique float)
+            %a    : 0x1.666666p-1
+            exact : 0.699999988079071044921875  (24 decimals)
