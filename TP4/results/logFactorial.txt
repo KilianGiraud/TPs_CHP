@@ -1,0 +1,16 @@
+=== 1-2. Ratio of factorials 200! / (190! 10!) ===
+170! = 7.257416e+306    171! = inf    DBL_MAX = 1.797693e+308
+200! = inf    190! = inf
+
+exact (64-bit integers)     C(200,10) = 22451004309013280
+direct 200!/(190! 10!)              = -nan
+logFactorial: log 200! = 863.231987192405, log 190! = 810.477462875864, log 10! = 15.104412573076
+exp(logFact(200) - logFact(190) - logFact(10)) = 22451004309011012   rel. error 1.0e-13
+exp(lgamma(201) - lgamma(191) - lgamma(11))    = 22451004309011172   rel. error 9.4e-14
+product of (190 + i) / i, i = 1..10 (double)  = 22451004309013280   rel. error 0.0e+00
+
+=== 3. Binomial probability P(X = 1000), X ~ B(2000, 1/2) ===
+C(2000,1000) = inf (overflow)   0.5^2000 = 0 (underflow)
+direct  C(2000,1000) * 0.5^2000 = -nan
+logs    exp(log C(2000,1000) + 2000 log 0.5) = 0.017839011145854369
+exact   0.01783901114585432    rel. error 2.7e-15

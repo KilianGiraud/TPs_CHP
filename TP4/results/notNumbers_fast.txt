@@ -1,0 +1,33 @@
+*** compiled with -ffast-math ***
+=== 1. Codes of the subject ===
+inf
+-nan
+x = 1     x - x == 0 : true    x == x : true    std::isnan(x) : false
+x = inf   x - x == 0 : true    x == x : true    std::isnan(x) : false
+x = NaN   x - x == 0 : true    x == x : true    std::isnan(x) : false
+
+=== 2. Special results and IEEE 754 exception flags ===
+2 * DBL_MAX                = inf           OVERFLOW INEXACT
+-2 * DBL_MAX               = -inf          OVERFLOW INEXACT
+1 / 0                      = inf           DIVBYZERO
+-1 / 0                     = -inf          DIVBYZERO
+0 / 0                      = -nan          INVALID
+sqrt(-2)                   = -nan          INVALID
+log(0)                     = -inf          DIVBYZERO
+log(-1)                    = -nan          INVALID
+inf - inf                  = -nan          INVALID
+0 * inf                    = -nan          INVALID
+inf + 1                    = inf           -
+exp(1000)                  = inf           OVERFLOW INEXACT
+exp(-1000)                 = 0             UNDERFLOW INEXACT
+DBL_MIN / 2  (subnormal)   = 0             UNDERFLOW INEXACT
+DBL_MIN / 3  (subnormal)   = 0             UNDERFLOW INEXACT
+DBL_TRUE_MIN / 2           = 0             -
+0.1 + 0.2                  = 0.3           INEXACT
+0.5 + 0.25                 = 0.75          -
+
+=== 3. NaN behaviour ===
+NaN == NaN : 1   NaN != NaN : 0   NaN < 1 : 0   NaN > 1 : 0   NaN >= 1 : 0   !(NaN < 1) : 0
+NaN + 1 = -nan   NaN * 0 = 0   (a NaN propagates...)
+pow(NaN, 0) = 1   fmax(NaN, 1) = 1   hypot(inf, NaN) = inf   (... but not always)
+std::max(NaN, 1.0) = 1   std::max(1.0, NaN) = 1   (depends on the order)

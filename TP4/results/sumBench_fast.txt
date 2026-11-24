@@ -1,0 +1,133 @@
+=== 0. Reference checks ===
+  summation.c compiled: -ffast-math (the compiler may reorder and simplify)
+  MT19937 init_by_array, 5 first outputs = mt19937ar.out : OK
+  exact sum (fsum), 12 test cases of CPython test_fsum      : OK
+
+  Two tiny sums (exact: 2 and 1):
+  algorithm               1 + 1e100 + 1 - 1e100    0.1 + ... + 0.1 (x10)
+  naive                                       2                        1
+  naive, 8 acc.                               2                        1
+  pairwise                                    2                        1
+  Kahan                                       2                        1
+  Kahan, 8 acc.                               2                        1
+  Neumaier                                    2                        1
+  Sum2 (TwoSum)                               2                        1
+  Klein (2nd order)                           2                        1
+  long double                                 0                        1
+  exact (fsum)                                2                        1
+
+=== 1. Double precision, N = 10000000 values per data set, time = best of 5 runs ===
+
+--- U[0,1]          same sign, 1 order of magnitude ---
+exact sum = 5002029.6783551499   cond = sum|x|/|sum x| = 1
+algorithm                          computed sum rel. error   ns/value
+naive                        5002029.6783551332    3.4e-15       0.39
+naive, 8 acc.                5002029.6783551238    5.2e-15       0.27
+pairwise                     5002029.6783551499    0.0e+00       0.34
+Kahan                        5002029.6783551332    3.4e-15       0.38
+Kahan, 8 acc.                5002029.6783551238    5.2e-15       0.28
+Neumaier                     5002029.6783551332    3.4e-15       0.40
+Sum2 (TwoSum)                5002029.6783551332    3.4e-15       0.39
+Klein (2nd order)            5002029.6783551332    3.4e-15       0.39
+long double                  5002029.6783551499    0.0e+00       1.56
+exact (fsum)                 5002029.6783551499    0.0e+00       5.33
+
+--- 10^U[-10,10]    same sign, 20 orders of magnitude ---
+exact sum = 2176057052501327.5   cond = sum|x|/|sum x| = 1
+algorithm                          computed sum rel. error   ns/value
+naive                        2176057052495228.8    2.8e-12       0.38
+naive, 8 acc.                2176057052499780.2    7.1e-13       0.27
+pairwise                     2176057052501327.2    1.1e-16       0.34
+Kahan                        2176057052495228.8    2.8e-12       0.38
+Kahan, 8 acc.                  2176057052499780    7.1e-13       0.27
+Neumaier                     2176057052495228.8    2.8e-12       0.39
+Sum2 (TwoSum)                2176057052495228.8    2.8e-12       0.38
+Klein (2nd order)            2176057052495228.8    2.8e-12       0.39
+long double                  2176057052501321.2    2.9e-15       1.57
+exact (fsum)                 2176057052501327.5    0.0e+00      16.50
+
+--- U[-1,1]         both signs (cancellations) ---
+exact sum = -859.10864839042449   cond = sum|x|/|sum x| = 5.82e+03
+algorithm                          computed sum rel. error   ns/value
+naive                       -859.10864839033593    1.0e-13       0.38
+naive, 8 acc.               -859.10864839045462    3.5e-14       0.27
+pairwise                    -859.10864839042279    2.0e-15       0.34
+Kahan                       -859.10864839033593    1.0e-13       0.38
+Kahan, 8 acc.               -859.10864839045473    3.5e-14       0.27
+Neumaier                    -859.10864839033593    1.0e-13       0.38
+Sum2 (TwoSum)               -859.10864839033593    1.0e-13       0.39
+Klein (2nd order)           -859.10864839033593    1.0e-13       0.38
+long double                 -859.10864839042449    0.0e+00       1.56
+exact (fsum)                -859.10864839042449    0.0e+00       5.36
+
+--- +-10^U[-10,10]  both signs, 20 orders of magnitude ---
+exact sum = 2415223835311.6118   cond = sum|x|/|sum x| = 898
+algorithm                          computed sum rel. error   ns/value
+naive                        2415223835311.3726    9.9e-14       0.38
+naive, 8 acc.                2415223835311.5898    9.1e-15       0.27
+pairwise                     2415223835311.6084    1.4e-15       0.34
+Kahan                        2415223835311.3726    9.9e-14       0.38
+Kahan, 8 acc.                2415223835311.5894    9.3e-15       0.28
+Neumaier                     2415223835311.3726    9.9e-14       0.39
+Sum2 (TwoSum)                2415223835311.3726    9.9e-14       0.38
+Klein (2nd order)            2415223835311.3726    9.9e-14       0.38
+long double                  2415223835311.6113    2.0e-16       1.56
+exact (fsum)                 2415223835311.6118    0.0e+00      15.87
+
+=== 2. Single precision (float), N = 10000000 ===
+
+--- U[0,1]          same sign, 1 order of magnitude, float ---
+exact sum = 5002029.6783599146
+algorithm                          computed sum rel. error   ns/value
+naive (float acc.)                      5001986    8.7e-06       0.19
+pairwise (float acc.)                   5002030    6.4e-08       0.16
+Kahan (float acc.)                      5001986    8.7e-06       0.19
+naive (double acc.)           5002029.678359922    1.5e-15       0.21
+
+--- 10^U[-10,10]    same sign, 20 orders of magnitude, float ---
+exact sum = 2176057052574215.8
+algorithm                          computed sum rel. error   ns/value
+naive (float acc.)             2174405845188608    7.6e-04       0.20
+pairwise (float acc.)          2176056857460736    9.0e-08       0.17
+Kahan (float acc.)             2174405845188608    7.6e-04       0.19
+naive (double acc.)            2176057052572828    6.4e-13       0.21
+
+--- U[-1,1]         both signs (cancellations), float ---
+exact sum = -859.10870554011694
+algorithm                          computed sum rel. error   ns/value
+naive (float acc.)           -859.1278076171875    2.2e-05       0.19
+pairwise (float acc.)        -859.1080322265625    7.8e-07       0.17
+Kahan (float acc.)           -859.1278076171875    2.2e-05       0.19
+naive (double acc.)         -859.10870554011672    2.6e-16       0.21
+
+--- +-10^U[-10,10]  both signs, 20 orders of magnitude, float ---
+exact sum = 2415223890437.3203
+algorithm                          computed sum rel. error   ns/value
+naive (float acc.)                2415225995264    8.7e-07       0.19
+pairwise (float acc.)             2415224422400    2.2e-07       0.16
+Kahan (float acc.)                2415225995264    8.7e-07       0.19
+naive (double acc.)          2415223890437.1782    5.9e-14       0.21
+
+=== 3. Relative error versus condition number, N = 1000000, |big values| up to 2^E ===
+   E      cond     naive    naive8  pairwise     Kahan    Kahan8  Neumaier      Sum2     Klein  long dbl     exact
+   0   4.0e+00   2.2e-14   3.1e-15   0.0e+00   2.2e-14   3.1e-15   2.2e-14   2.2e-14   2.2e-14   1.2e-16   0.0e+00
+  10   5.6e+02   6.4e-15   2.3e-14   3.5e-16   6.4e-15   2.2e-14   6.4e-15   6.4e-15   6.4e-15   0.0e+00   0.0e+00
+  20   3.0e+05   1.1e-11   1.1e-11   1.7e-13   1.1e-11   1.1e-11   1.1e-11   1.1e-11   1.1e-11   6.7e-15   0.0e+00
+  30   2.1e+08   1.8e-09   3.7e-09   2.2e-10   1.8e-09   3.6e-09   1.8e-09   1.8e-09   1.8e-09   7.5e-12   0.0e+00
+  40   1.6e+11   1.5e-05   9.3e-08   1.7e-07   1.5e-05   3.0e-08   1.5e-05   1.5e-05   1.5e-05   3.5e-09   0.0e+00
+  50   1.3e+14   9.2e-01   7.2e-01   2.1e-04   9.2e-01   7.2e-01   9.2e-01   9.2e-01   9.2e-01   5.1e-06   0.0e+00
+  60   1.1e+17   5.6e+00   1.0e+01   9.2e-01   5.6e+00   1.0e+01   5.6e+00   5.6e+00   5.6e+00   5.9e-01   0.0e+00
+  70   1.0e+20   5.2e+03   6.0e+03   3.3e+02   5.2e+03   5.9e+03   5.2e+03   5.2e+03   5.2e+03   7.4e+00   0.0e+00
+  80   9.0e+22   3.3e+06   9.1e+06   6.9e+04   3.3e+06   9.1e+06   3.3e+06   3.3e+06   3.3e+06   5.5e+01   0.0e+00
+  90   8.3e+25   3.9e+08   4.6e+09   2.7e+07   3.9e+08   4.6e+09   3.9e+08   3.9e+08   3.9e+08   1.9e+06   0.0e+00
+ 100   7.3e+28   5.0e+12   2.5e+12   1.3e+11   5.0e+12   2.5e+12   5.0e+12   5.0e+12   5.0e+12   6.8e+08   0.0e+00
+ 110   7.0e+31   1.4e+16   5.5e+15   8.7e+13   1.4e+16   5.4e+15   1.4e+16   1.4e+16   1.4e+16   4.1e+12   0.0e+00
+ 120   6.7e+34   3.0e+18   1.7e+18   2.1e+17   3.0e+18   1.7e+18   3.0e+18   3.0e+18   3.0e+18   1.1e+14   0.0e+00
+ 130   6.4e+37   2.0e+21   2.5e+21   2.2e+20   2.0e+21   2.5e+21   2.0e+21   2.0e+21   2.0e+21   1.1e+18   0.0e+00
+ 140   5.9e+40   2.1e+24   3.2e+23   3.3e+23   2.1e+24   4.0e+23   2.1e+24   2.1e+24   2.1e+24   1.5e+21   0.0e+00
+ 150   5.7e+43   4.3e+27   5.3e+26   9.4e+25   4.3e+27   4.9e+26   4.3e+27   4.3e+27   4.3e+27   1.1e+24   0.0e+00
+ 160   5.6e+46   7.6e+30   7.5e+29   4.6e+29   7.6e+30   7.5e+29   7.6e+30   7.6e+30   7.6e+30   8.1e+26   0.0e+00
+ 170   5.2e+49   6.5e+33   2.0e+33   4.0e+32   6.5e+33   2.0e+33   6.5e+33   6.5e+33   6.5e+33   4.1e+30   0.0e+00
+ 180   5.1e+52   2.2e+35   1.6e+36   1.0e+35   2.2e+35   1.6e+36   2.2e+35   2.2e+35   2.2e+35   3.8e+30   0.0e+00
+ 190   5.1e+55   2.1e+39   3.0e+39   9.8e+37   2.1e+39   2.9e+39   2.1e+39   2.1e+39   2.1e+39   4.8e+34   0.0e+00
+ 200   4.6e+58   8.9e+41   9.8e+41   9.6e+40   8.9e+41   1.0e+42   8.9e+41   8.9e+41   8.9e+41   6.0e+38   0.0e+00
